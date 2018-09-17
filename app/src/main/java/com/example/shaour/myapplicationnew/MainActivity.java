@@ -31,11 +31,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ActivityCompat.requestPermissions(this,new String[]{
+                Manifest.permission.RECORD_AUDIO},1);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ActivityCompat.requestPermissions(this,new String[]{
-                Manifest.permission.RECORD_AUDIO},1);
 
         mp = new com.example.shaour.myapplicationnew.morseplayer(14550, 25);// -
         mp2 = new com.example.shaour.myapplicationnew.morseplayer(10550, 25); // .
@@ -130,7 +130,8 @@ public class MainActivity extends AppCompatActivity {
             case 1: {
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(MainActivity.this, "Recording Permission Granted", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, "Permission Granted,After granted restart once. Ignore!" +
+                            "If Restarted Already", Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(MainActivity.this, "Permission Not Granted", Toast.LENGTH_LONG).show();
                 }
